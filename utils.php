@@ -1,64 +1,38 @@
 <?php
-function loadFooterText($filename) {
-    if (!file_exists($filename)) {
-        return "Text file file not found.";
-    }
-    return file_get_contents($filename);
+session_start();
+
+function isLoggedIn() {
+    return isset($_SESSION['username']);
+}
+
+function getCurrentUser() {
+    return $_SESSION['username'];
 }
 
 function loadPostsFromJSON($filename) {
-    $json_data = file_get_contents($filename);
-    return json_decode($json_data, true);
+    return json_decode(file_get_contents($filename), true) ?: [];
+}
+
+function savePostsToJSON($filename, $posts) {
+    file_put_contents($filename, json_encode($posts, JSON_PRETTY_PRINT));
+}
+
+function loadUsers() {
+    return json_decode(file_get_contents('../users.json'), true) ?: [];
+}
+
+function saveUsers($users) {
+    file_put_contents('../users.json', json_encode($users, JSON_PRETTY_PRINT));
+}
+
+function displayPosts($posts) {
+    foreach ($posts as $index => $post) {
+        echo "<h3><a href='detail.php?post_id={$index}'>{$post['title']}</a></h3>";
+        echo "<p><em>By {$post['author']} on {$post['date']}</em></p>";
+    }
 }
 
 function getPost($posts, $post_id) {
-    return isset($posts[$post_id]) ? $posts[$post_id] : null;
-}
-
-function getVisitorCount($filename, $post_id) {
-    if (!file_exists($filename)) {
-        return 0; // Return 0 if the file doesn't exist
-    }
-
-    $rows = array_map('str_getcsv', file($filename));
-    
-    foreach ($rows as $row) {
-        if ($row[0] === (string)$post_id) {
-            return (int)$row[1]; // Return the visitor count for the post_id
-        }
-    }
-    
-    return 0; // Return 0 if post_id not found
-}
-
-function updateVisitorCount($filename, $post_id) {
-    $rows = [];
-    if (file_exists($filename)) {
-        $rows = array_map('str_getcsv', file($filename));
-    }
-    $found = false;
-	
-    // Check if the post_id exists and update the count
-    foreach ($rows as &$row) {
-        if ($row[0] === (string)$post_id) {
-            $row[1] = (int)$row[1] + 1; 
-            $found = true; 
-            break; 
-        }
-    }
-
-    // If post_id not found, add it to the array
-    if (!$found) {
-        $rows[] = [(string)$post_id, 1]; // Add new post_id with initial count of 1
-    } 
-	
-    // Write back to the CSV file
-    $file = fopen($filename, 'w');
-    
-	foreach ($rows as &$row) {
-        fputcsv($file, $row);
-    }
-
-    fclose($file);
+    return $posts[$post_id] ?? null;
 }
 ?>
