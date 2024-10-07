@@ -1,80 +1,128 @@
 [
     {
+        "id": 1,
         "title": "First Blog Post",
         "content": "This is the content of the first blog post.",
         "author": "Author 1",
         "date": "2024-09-17"
     },
     {
+        "id": 2,
         "title": "Second Blog Post",
         "content": "This is the content of the second blog post.",
         "author": "Author 2",
         "date": "2024-09-16"
     },
     {
+        "id": 3,
         "title": "Third Blog Post",
         "content": "This is the content of the third blog post.",
         "author": "Author 3",
         "date": "2024-09-15"
     },
     {
+        "id": 4,
         "title": "THIS IS A TEST TITLE",
         "content": "Test content",
         "author": "Test Author ",
         "date": "2024-09-30"
     },
     {
+        "id": 5,
         "title": "\u14da\u160f\u15e2",
         "content": "No thoughts in my head lalalalalala \u2570(*\u00b0\u25bd\u00b0*)\u256f",
         "author": "P.B.",
         "date": "2024-09-30"
     },
     {
+        "id": 6,
         "title": "First Authenticated Post",
         "content": "This is an Authenticated post as sandj3@mymail.nku.edu\r\n\r\nNICEEEE i can edit\r\n",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 7,
         "title": "xss test 2",
         "content": " <button type=\"button\" \r\n            onclick=\"alert('Welcome to GeeksforGeeks')\">\r\n        Click Here\r\n    <\/button>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 8,
         "title": "xss test 3",
         "content": "<a href=\"http:\/\/google.com\">Click me<\/a>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 9,
         "title": "xss test 4",
         "content": "<script>document.body.innerHTML = '<h1>This site is hacked! muhwhahahahah  <br \/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\u2606*: .\uff61. o(\u2267\u25bd\u2266)o .\uff61.:*\u2606<\/h1>';<\/script>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 10,
         "title": "xss test 5",
         "content": "<div onmouseover=\"alert('you moused over me MORON')\">Hover over me<\/div>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 11,
         "title": "xxs test 6",
         "content": "This tries to execute a script within an image tag:<img src=\"nonexistent.jpg\" onerror=\"alert('XSS via image!')\">",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 12,
         "title": "xxs test 7",
         "content": "This can be used to load another site inside an iframe, which could be used for phishing attacks:    <iframe src=\"proxy.php\" width=\"300\" height=\"300\"><\/iframe><iframe src=\"proxy.php?target=https:\/\/google.com\" width=\"600\" height=\"400\"><\/iframe><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Proxy Navigation<\/title>\r\n<\/head>\r\n<body>\r\n    <h1>Navigate within a Website via Proxy<\/h1>\r\n    \r\n    <form method=\"GET\" action=\"proxy.php\" target=\"iframe\">\r\n        <input type=\"text\" name=\"target\" placeholder=\"Enter a URL\" required>\r\n        <button type=\"submit\">Go<\/button>\r\n    <\/form>\r\n\r\n    <!-- Proxy iframe -->\r\n    <iframe name=\"iframe\" width=\"100%\" height=\"800px\" src=\"proxy.php?target=https:\/\/www.example.com\"><\/iframe>\r\n<\/body>\r\n<\/html>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
     },
     {
+        "id": 13,
         "title": "xxs test 8",
         "content": "This will display the cookies directly in the browser...\r\n<script>\r\n    \/\/alert('Cookies: ' + document.cookie);\r\n<\/script>\r\n<script>\r\n    document.write('\\n\\n Cookies: ' + document.cookie);\r\n<\/script>",
         "author": "sandj3@mymail.nku.edu",
         "date": "2024-10-01"
+    },
+    {
+        "id": 14,
+        "title": "making this as test",
+        "content": "will change to test 2 again (last test didnt stick) and see if I can still edit this post (as test2)\r\n",
+        "author": "test@test",
+        "date": "2024-10-07"
+    },
+    {
+        "id": 15,
+        "title": "ID Test",
+        "content": "post id should be like 14 or 115 or sometyhing, not 1\r\n",
+        "author": "sandj3@mymail.nku.edu",
+        "date": "2024-10-07"
+    },
+    {
+        "id": 16,
+        "title": "next test",
+        "content": "hmmm",
+        "author": "sandj3@mymail.nku.edu",
+        "date": "2024-10-07"
+    },
+    {
+        "id": 17,
+        "title": "Name change test",
+        "content": "Name is test3, pw: test2. I am making this post. Once I change my name, wil I be able to edit?",
+        "author": "Author 1",
+        "date": "2024-10-07"
+    },
+    {
+        "id": 18,
+        "title": "User: test 4",
+        "content": "Deleting user 4 after this post...",
+        "author": null,
+        "date": "2024-10-07"
     }
 ]

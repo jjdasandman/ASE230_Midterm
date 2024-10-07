@@ -12,9 +12,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author = getCurrentUser();
     $date = date("Y-m-d");
 
+    // Load posts
     $posts = loadPostsFromJSON('../posts.json');
-    $posts[] = ['title' => $title, 'content' => $content, 'author' => $author, 'date' => $date];
 
+    // Determine the next ID
+    $nextId = 1;
+    if (count($posts) > 0) {
+        $lastPost = end($posts);
+        $nextId = $lastPost['id'] + 1;
+    }
+
+    // Add the new post with ID
+    $posts[] = [
+        'id' => $nextId,
+        'title' => $title,
+        'content' => $content,
+        'author' => $author,
+        'date' => $date
+    ];
+
+    // Save posts back to the JSON file
     savePostsToJSON('../posts.json', $posts);
 
     header('Location: index.php');

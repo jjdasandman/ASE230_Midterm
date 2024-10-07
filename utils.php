@@ -35,4 +35,17 @@ function displayPosts($posts) {
 function getPost($posts, $post_id) {
     return $posts[$post_id] ?? null;
 }
+
+// Load users from JSON file
+function loadUsersFromJSON($filename) {
+    $json_data = file_get_contents($filename);
+    return json_decode($json_data, true);
+}
+
+// Save users to JSON file
+function saveUsersToJSON($filename, $users) {
+    $json_data = json_encode($users, JSON_PRETTY_PRINT);
+    file_put_contents($filename, $json_data);
+}
+
 ?>
