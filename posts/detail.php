@@ -30,6 +30,12 @@ if (isset($_GET['post_id'])) {
     <p>By <?php echo $post['author']; ?> on <?php echo $post['date']; ?></p>
     <p><?php echo $post['content']; ?></p>
 
+
+    <!-- Displaying the uploaded image if it exists -->
+    <?php if (!empty($post['image'])) echo '<img src="' . $post['image'] . '" alt="Post Image" class="img-fluid mt-4">'; ?>
+
+
+
     <!-- Buttons to edit and delete (only for the author) -->
     <?php if (isLoggedIn() && getCurrentUser() === $post['author']) { ?>
         <a href="edit.php?post_id=<?php echo $post_id; ?>" class="btn btn-warning">Edit Post</a>

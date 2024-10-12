@@ -46,46 +46,106 @@ if (isset($_POST['sort'])) {
             height: 200px;
             object-fit: cover; /* Ensures the image covers the area */
         }
+        .navbar {
+            background-color: #003DA5; /* Chelsea blue */
+        }
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: white; 
+        }
+        .navbar .nav-link:hover {
+            color: #cce5ff; 
+        }
+        .navbar .nav-item.special a {
+            color: #FFD700; /* Gold color  */
+        }
+        .navbar .nav-item.special a:hover {
+            color: #ffeb3b; /* Lighter gold  */
+        }
+        .nav-item.sign-out a {
+            color: red; /* Red color for Sign Out */
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1 class="my-4">All Blog Posts</h1>
+<body>
+<!-- Navbar (unchanged) -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Closet Manager</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item special">
+          <a class="nav-link" href="../profile/index.php">Profile</a> 
+        </li>
+        <?php if (isLoggedIn()) { ?>
+          <li class="nav-item special">
+            <a class="nav-link" href="../profile/settings.php">Settings</a>
+          </li>
+        <?php } ?>
+      </ul>
 
-    <!-- Authentication buttons -->
+      <!-- Authentication buttons in the navbar -->
+      <ul class="navbar-nav ms-auto"> 
+        <?php if (isLoggedIn()) { ?>
+            <li class="nav-item sign-out">
+                <a href="../auth/logout.php" class="nav-link">Sign Out</a>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a href="../auth/login.php" class="nav-link">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a href="../auth/signup.php" class="nav-link">Sign Up</a>
+            </li>
+        <?php } ?>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="jumbotron mt-4">
+        <h1 class="display-4">Welcome to Your Closet Manager</h1>
+        <p class="lead">Organize, analyze, and optimize your wardrobe with ease. Tag your clothes by color, brand, type, and material.</p>
+    </div>
+
+    <h2 class="my-4">Your Wardrobe</h2>
+
+    <!-- Authentication message -->
     <div class="mb-4">
         <?php if (isLoggedIn()) { ?>
             <p>Welcome, <?php echo getCurrentUser(); ?>!</p>
-            <a href="../auth/logout.php" class="btn btn-danger">Sign Out</a>
-            <a href="../profile/index.php" class="btn btn-primary">Profile</a>
-            <a href="../profile/settings.php" class="btn btn-secondary">Settings</a>
-        <?php } else { ?>
-            <a href="../auth/login.php" class="btn btn-primary">Sign In</a>
-            <a href="../auth/signup.php" class="btn btn-secondary">Sign Up</a>
         <?php } ?>
     </div>
-	<div class="mb-4 d-flex justify-content-between align-items-center">
-		<!-- Button to create a new post (if logged in) -->
-		<?php if (isLoggedIn()) { ?>
-			<a href="create.php" class="btn btn-success">Create New Post</a>
-		<?php } ?>
 
-		<!-- Sort dropdown -->
-		<form method="POST" class="form-inline mb-0 ms-auto">
-			<div class="form-group">
-				<label for="sort" class="sr-only">Sort By</label>
-				<select name="sort" id="sort" class="form-control" onchange="this.form.submit()">
-					<option value="">Sort By</option>
-					<option value="date_asc">Date Ascending</option>
-					<option value="date_desc">Date Descending</option>
-					<option value="author_az">Author A-Z</option>
-					<option value="author_za">Author Z-A</option>
-				</select>
-			</div>
-		</form>
-	</div>
+    <!-- sort Dropdown -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <!-- Sort dropdown -->
+            <form method="POST" class="form-inline">
+                <div class="form-group">
+                    <label for="sort" class="mr-2">Sort By:</label>
+                    <select name="sort" id="sort" class="form-control" onchange="this.form.submit()">
+                        <option value="">Choose...</option>
+                        <option value="color">Color</option>
+                        <option value="brand">Brand</option>
+                        <option value="type">Type</option>
+                        <option value="material">Material</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+       
+    </div>
 
-    <!-- Display posts in a grid -->
+    <!-- Display clothes in a grid -->
     <div class="row">
         <?php foreach ($posts as $post): ?>
             <div class="col-md-4"> <!-- Change this value to adjust the number of columns -->
@@ -101,5 +161,6 @@ if (isset($_POST['sort'])) {
         <?php endforeach; ?>
     </div>
 </div>
+
 </body>
 </html>
