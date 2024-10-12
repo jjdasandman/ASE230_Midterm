@@ -1,4 +1,6 @@
 <?php
+
+
 // Function to load existing posts from the JSON file
 function loadPostsFromJSON($filename) {
     if (file_exists($filename)) {

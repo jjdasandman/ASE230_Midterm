@@ -47,19 +47,24 @@ if (isset($_GET['post_id'])) {
                     <h5 class="card-title"><?php echo $title; ?></h5>
                     <p class="card-text"><?php echo $content; ?></p>
                     <p class="text-muted">By <?php echo $author; ?> on <?php echo $date; ?></p>
-                    <p class="text-muted">Views: <?php echo $visitor_count; 
-					// Load footer text from .txt file
-					$footer_text = loadFooterText('footer.txt');
-					?></p>
+                    <p class="text-muted">Views: <?php echo $visitor_count; ?></p>
+                    
+                    <!-- <?php if (!empty($post['image'])): ?>
+                        <img src="<?php echo $post['image']; ?>" alt="Post Image" class="img-fluid mt-3">
+                    <?php endif; ?> -->
+
+                    <?php 
+                    // Load footer text from .txt file
+                    $footer_text = loadFooterText('footer.txt'); 
+                    ?>
                 </div>
-				
             </div>
         <?php } else { ?>
             <p><?php echo $error; ?></p>
         <?php } ?>
 
         <a href="index.php" class="btn btn-primary mt-3">Back to Blog Index</a>
-		<!-- Display footer text from footer.txt -->
+        <!-- Display footer text from footer.txt -->
         <footer class="mt-4">
             <p class="text-muted"><?php echo $footer_text; ?></p>
         </footer>

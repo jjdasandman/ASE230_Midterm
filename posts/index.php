@@ -1,7 +1,9 @@
 <?php
 include '../utils.php';
 $posts = loadPostsFromJSON('../posts.json');
-
+// echo '<pre>';
+// print_r($posts);
+// echo '</pre>';
 // Handle sorting logic
 if (isset($_POST['sort'])) {
     $sortOption = $_POST['sort'];
@@ -44,7 +46,7 @@ if (isset($_POST['sort'])) {
         }
         .card-img-top {
             height: 200px;
-            object-fit: cover; /* Ensures the image covers the area */
+            object-fit: cover;
         }
         .navbar {
             background-color: #003DA5; /* Chelsea blue */
@@ -68,8 +70,8 @@ if (isset($_POST['sort'])) {
     </style>
 </head>
 <body>
-<body>
-<!-- Navbar (unchanged) -->
+
+
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Closet Manager</a>
@@ -85,6 +87,10 @@ if (isset($_POST['sort'])) {
           <a class="nav-link" href="../profile/index.php">Profile</a> 
         </li>
         <?php if (isLoggedIn()) { ?>
+        
+          <li class="nav-item special">
+            <a class="nav-link" href="../posts/create.php">Create New Post</a>
+          </li>
           <li class="nav-item special">
             <a class="nav-link" href="../profile/settings.php">Settings</a>
           </li>
@@ -110,6 +116,7 @@ if (isset($_POST['sort'])) {
   </div>
 </nav>
 
+
 <div class="container">
     <div class="jumbotron mt-4">
         <h1 class="display-4">Welcome to Your Closet Manager</h1>
@@ -121,7 +128,7 @@ if (isset($_POST['sort'])) {
     <!-- Authentication message -->
     <div class="mb-4">
         <?php if (isLoggedIn()) { ?>
-            <p>Welcome, <?php echo getCurrentUser(); ?>!</p>
+            <p>Welcome, <?php echo ucfirst(getCurrentUser()); ?>!</p>
         <?php } ?>
     </div>
 
